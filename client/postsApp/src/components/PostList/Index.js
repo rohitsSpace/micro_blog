@@ -5,13 +5,13 @@ import CommentsList from "../CommentsList";
 
 const PostList = ({ refetch = false }) => {
   const [posts, setPosts] = useState({});
-  const [refetchComment, setRefetch] = useState(false);
 
   const getPosts = async () => {
     const res = await axios.get("http://localhost:4002/posts");
     console.log("res", res.data);
     setPosts(res.data);
   };
+
   useEffect(() => {
     getPosts();
   }, [refetch]);
@@ -21,8 +21,8 @@ const PostList = ({ refetch = false }) => {
         <div className="card-body">
           <h5 className="card-title">{post.title}</h5>
           <hr />
-          <CreateComment postId={post.id} setRefetch={setRefetch} />
-          <CommentsList postId={post.id} refetch={refetchComment} />
+          <CreateComment postId={post.id} />
+          <CommentsList comments={post.comments} />
         </div>
       </div>
     );

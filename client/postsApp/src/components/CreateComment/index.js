@@ -3,7 +3,7 @@ import axios from "axios";
 import InputBox from "../shared/InputBox";
 import Button from "../shared/button";
 
-const CreateComment = ({ postId, setRefetch }) => {
+const CreateComment = ({ postId }) => {
   const [commentContent, setCommentContent] = useState("");
 
   const handleSubmit = async (e) => {
@@ -12,7 +12,6 @@ const CreateComment = ({ postId, setRefetch }) => {
       content: commentContent,
     });
     setCommentContent("");
-    setRefetch(true);
   };
 
   return (
