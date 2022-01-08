@@ -2,13 +2,19 @@ import React from "react";
 
 const CommentsList = ({ comments }) => {
   const commentsToRender = comments.map((comment) => {
+    if (comment.status === "pending") {
+      return <li>Awaiting for moderation</li>;
+    }
+
     return (
-      <div className="me-1 mb-1" style={{ width: "33%" }} key={comment.id}>
-        {comment.content}
-      </div>
+      <li className="mb-1" key={comment.id}>
+        {comment.status === "approved"
+          ? comment.content
+          : "Comment got rejected"}
+      </li>
     );
   });
-  return <div className="d-flex flex-row flex-wrap">{commentsToRender}</div>;
+  return <ul>{commentsToRender}</ul>;
 };
 
 export default CommentsList;
